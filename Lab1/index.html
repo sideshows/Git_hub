@@ -12,16 +12,20 @@
 
     
 <body>
+
+    
+    <div id="about" data-theme="a" >
+                <h2>About</h2>
+                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b><br>
+                    Den coola informationen som presnenteras om kattdjutren kommer från allas vår polare <a href="http://se.wikipedia.org">Wikipedia</a></p>
+            </div>
 <!-- Page 1 -->    
     <div data-role="page" id="sida_1" data-theme="a">
         <div data-role="header">
             <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
             <h1>KattXikon</h1>
             <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-            <div data-role="popup" id="about">
-                <h2>About</h2>
-                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
-            </div>
+            
         </div>
         <div data-role="main" class="ui-content">
             <h1>Kattdjur</h1> 
@@ -40,20 +44,26 @@
     
 <!-- Page 2 -->        
     <div data-role="page" id="tiger" data-theme="a">
+        <div data-role="panel" id="tigerPanel" data-theme="b"> 
+            <h2>Tiger fun facts</h2>
+            <p>Här bor tigern:</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Tiger_distribution3.PNG" style="max-width:100%;">
+            <p>
+                <br><a href="https://sv.wikipedia.org/wiki/Tiger">Wiki Tiger</a>
+            </p>
+        </div> 
+        
         <div data-role="header">
             <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
             <h1>KattXikon</h1>
             <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-            <div data-role="popup" id="about">
-                <h2>About</h2>
-                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
-            </div>
         </div>
         <div data-role="main" class="ui-content">
             <h1>Tiger</h1> 
             <p>Tiger (Panthera tigris) är ett kattdjur som endast lever i Asien. Tigern är det största nu levande kattdjuret. Man delar upp de idag förekommande bestånden i sex underarter. Utöver detta känner man till tre utdöda underarter. De flesta tigrar lever i fuktig tropisk och subtropisk lövskog, men finns även i tempererade löv- och barrskogar. I denna miljö utgör pälsens mönster bra kamouflage. Tigern är en god simmare och badar ofta. Den jagar ensam och äter främst medelstora djur ur familjerna svindjur och hjortdjur, men tigern är opportunistisk och äter det den kommer över, så dieten inkluderar även fisk, fåglar, insekter, amfibier, reptiler, gnagare, piggsvin och primater. Människan är den enda art som utgör något allvarligt hot mot tigern. Tjuvjakt och människans omvandling av miljön i de områden där den lever har tillsammans reducerat tigerpopulationerna kraftigt, så att den nu räknas som starkt hotad. Trivialnamnet tiger härstammar från det grekiska ordet tigris som troligtvis är besläktat med det avestiska ordet för pil, tigri. Det skulle därmed syfta på djurets potential till höga hastigheter.
             </p>
             <a href="#tigerbild" data-rel="popup" class="ui-btn ui-btn-inline" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du tigern</a>
+            <a href="#tigerPanel"  class="ui-btn ui-btn-inline" >Mer tiger</a>
             <div data-role="popup" id="tigerbild" data-overlay-theme="a" data-theme="a" data-corners="false">
     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/tiger.jpg" style="max-height:512px;" alt="Tiger">
             </div>
@@ -71,14 +81,19 @@
 
 <!-- Page 3 -->        
     <div data-role="page" id="lejon" data-theme="a">
+        <div data-role="panel" id="lejonPanel" data-theme="b"> 
+            <h2>Lejon fun facts</h2>
+            <p>Här bor Lejon:</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Lion_distribution.png" style="max-width:100%;">
+            <p>
+                <br><a href="https://sv.wikipedia.org/wiki/Lejon">Wiki Lejon</a>
+            </p>
+        </div> 
         <div data-role="header">
             <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
             <h1>KattXikon</h1>
             <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-            <div data-role="popup" id="about">
-                <h2>About</h2>
-                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
-            </div>
+           
         </div>
         <div data-role="main" class="ui-content">
             <h1>Lejon</h1> 
@@ -88,6 +103,7 @@
             <div data-role="popup" id="lejonbild" data-overlay-theme="a" data-theme="a" data-corners="false">
     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/lejon.jpg" style="max-height:512px;" alt="Lejon">
             </div>
+            <a href="#lejonPanel"  class="ui-btn ui-btn-inline" >Mer lejon</a>
 
             
             <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
@@ -104,7 +120,12 @@
 
     
       
-  
+    <script>
+         /* Instantiate the popup on DOMReady, and enhance its contents */
+        $(function(){
+            $( "#about" ).enhanceWithin().popup();
+        });
+    </script>
     
     
     
