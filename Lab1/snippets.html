@@ -1,0 +1,44 @@
+
+<h1>Kattdjur</h1> 
+Kattdjur(Felidae) är en familj i ordningen rovdjur och underordningen kattliknande rovdjur (Feliformia), tillsammans med hyenor (Hyaenidae), mårddjur (Mustelidae), manguster (Herpestidae) och sibetdjur (viverrider, Viverridae); av dessa är sibetdjur och hyenor de närmaste släktingarna. Kattdjuren består av flera släkten och arter, som förekommer naturligt över hela jorden, utom i Australien, Madagaskar, Grönland, norra Ryssland och Antarktis.
+</div>
+
+<!--
+Källa wikipedia:
+
+Tiger (Panthera tigris) är ett kattdjur som endast lever i Asien. Tigern är det största nu levande kattdjuret. Man delar upp de idag förekommande bestånden i sex underarter. Utöver detta känner man till tre utdöda underarter. De flesta tigrar lever i fuktig tropisk och subtropisk lövskog, men finns även i tempererade löv- och barrskogar. I denna miljö utgör pälsens mönster bra kamouflage. Tigern är en god simmare och badar ofta. Den jagar ensam och äter främst medelstora djur ur familjerna svindjur och hjortdjur, men tigern är opportunistisk och äter det den kommer över, så dieten inkluderar även fisk, fåglar, insekter, amfibier, reptiler, gnagare, piggsvin och primater. Människan är den enda art som utgör något allvarligt hot mot tigern. Tjuvjakt och människans omvandling av miljön i de områden där den lever har tillsammans reducerat tigerpopulationerna kraftigt, så att den nu räknas som starkt hotad. Trivialnamnet tiger härstammar från det grekiska ordet tigris som troligtvis är besläktat med det avestiska ordet för pil, tigri. Det skulle därmed syfta på djurets potential till höga hastigheter.
+
+
+Lejon (Panthera leo) är ett kattdjur av släktet Panthera och världens näst största kattdjur, bara tigern är större. Lejonen lever i motsats till andra kattdjur i flockar. Två av artens viktigaste kännetecken är hanarnas man och dess rytande vilket är unikt bland kattdjuren. Lejon förekommer idag i Afrika och i den indiska delstaten Gujarat.
+
+-->
+
+<!--- listor -->
+
+<ul  data-role="listview">
+  <li><a href="#lejon">Lejon</a></li>
+   <li><a href="#tiger">Tiger</a></li>
+</ul>
+
+
+<!-- dialog -->
+
+
+<div data-role="popup" id="about" class="ui-content" data-dismissible="false" data-theme="a" >
+      <a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+</div>
+
+<!-- visa foto -->
+
+<a href="#tigerbild" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du tigern.</a>
+</div>
+
+<div data-role="popup" id="tigerbild" data-overlay-theme="a" data-theme="a" data-corners="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/tiger.jpg" style="max-height:512px;" alt="Tiger">
+</div>
+
+<!-- diverse knappar -->
+
+     <a href="#about" data-rel="popup" data-position-to="window" data-transition="pop" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
+
+<a href="#" class="ui-btn ui-corner-all ui-shadow  ui-btn-c" data-rel="back">Ok</a>
