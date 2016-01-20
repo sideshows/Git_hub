@@ -9,19 +9,109 @@
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
-<body>
-<div data-role="page" id="sida_1">
-<div data-role="header">
-<h1>KattXikon</h1>
-</div>
-<div data-role="main" class="ui-content">
-<p>Något innehåll</p>
-</div>
-<div data-role="footer">
-<h1>Sidfoten </h1>
-</div>
-</div>
+
     
+<body>
+<!-- Page 1 -->    
+    <div data-role="page" id="sida_1" data-theme="a">
+        <div data-role="header">
+            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
+            <h1>KattXikon</h1>
+            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
+            <div data-role="popup" id="about">
+                <h2>About</h2>
+                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
+            </div>
+        </div>
+        <div data-role="main" class="ui-content">
+            <h1>Kattdjur</h1> 
+            <p>Kattdjur(Felidae) är en familj i ordningen rovdjur och underordningen kattliknande rovdjur (Feliformia), tillsammans med hyenor (Hyaenidae), mårddjur (Mustelidae), manguster (Herpestidae) och sibetdjur (viverrider, Viverridae); av dessa är sibetdjur och hyenor de närmaste släktingarna. Kattdjuren består av flera släkten och arter, som förekommer naturligt över hela jorden, utom i Australien, Madagaskar, Grönland, norra Ryssland och Antarktis.
+            </p>
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
+                <li><a href="#lejon">Lejon</a></li>
+                <li><a href="#tiger">Tiger</a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Kattinfo lånad från wikipedia</h1>
+        </div>
+    </div>
+<!-- End Page 1 -->   
+    
+<!-- Page 2 -->        
+    <div data-role="page" id="tiger" data-theme="a">
+        <div data-role="header">
+            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
+            <h1>KattXikon</h1>
+            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
+            <div data-role="popup" id="about">
+                <h2>About</h2>
+                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
+            </div>
+        </div>
+        <div data-role="main" class="ui-content">
+            <h1>Tiger</h1> 
+            <p>Tiger (Panthera tigris) är ett kattdjur som endast lever i Asien. Tigern är det största nu levande kattdjuret. Man delar upp de idag förekommande bestånden i sex underarter. Utöver detta känner man till tre utdöda underarter. De flesta tigrar lever i fuktig tropisk och subtropisk lövskog, men finns även i tempererade löv- och barrskogar. I denna miljö utgör pälsens mönster bra kamouflage. Tigern är en god simmare och badar ofta. Den jagar ensam och äter främst medelstora djur ur familjerna svindjur och hjortdjur, men tigern är opportunistisk och äter det den kommer över, så dieten inkluderar även fisk, fåglar, insekter, amfibier, reptiler, gnagare, piggsvin och primater. Människan är den enda art som utgör något allvarligt hot mot tigern. Tjuvjakt och människans omvandling av miljön i de områden där den lever har tillsammans reducerat tigerpopulationerna kraftigt, så att den nu räknas som starkt hotad. Trivialnamnet tiger härstammar från det grekiska ordet tigris som troligtvis är besläktat med det avestiska ordet för pil, tigri. Det skulle därmed syfta på djurets potential till höga hastigheter.
+            </p>
+            <a href="#tigerbild" data-rel="popup" class="ui-btn ui-btn-inline" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du tigern</a>
+            <div data-role="popup" id="tigerbild" data-overlay-theme="a" data-theme="a" data-corners="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/tiger.jpg" style="max-height:512px;" alt="Tiger">
+            </div>
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
+                <li><a href="#lejon">Lejon</a></li>
+                <li><a href="#tiger">Tiger</a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Kattinfo lånad från wikipedia</h1>
+        </div>
+        
+    </div>
+<!-- End Page 2 -->    
+
+<!-- Page 3 -->        
+    <div data-role="page" id="lejon" data-theme="a">
+        <div data-role="header">
+            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
+            <h1>KattXikon</h1>
+            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
+            <div data-role="popup" id="about">
+                <h2>About</h2>
+                <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b></p>
+            </div>
+        </div>
+        <div data-role="main" class="ui-content">
+            <h1>Lejon</h1> 
+            <p>Lejon (Panthera leo) är ett kattdjur av släktet Panthera och världens näst största kattdjur, bara tigern är större. Lejonen lever i motsats till andra kattdjur i flockar. Två av artens viktigaste kännetecken är hanarnas man och dess rytande vilket är unikt bland kattdjuren. Lejon förekommer idag i Afrika och i den indiska delstaten Gujarat.
+            </p>
+            <a href="#lejonbild" data-rel="popup" class="ui-btn ui-btn-inline" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du Lejonet</a>
+            <div data-role="popup" id="lejonbild" data-overlay-theme="a" data-theme="a" data-corners="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/lejon.jpg" style="max-height:512px;" alt="Lejon">
+            </div>
+
+            
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
+                <li><a href="#lejon">Lejon</a></li>
+                <li><a href="#tiger">Tiger</a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Kattinfo lånad från wikipedia</h1>
+        </div>
+        
+    </div>
+<!-- End Page 3 --> 
+
+    
+      
+  
+    
+    
+    
+
+     
+        
+
     
 </body>
 </html>
