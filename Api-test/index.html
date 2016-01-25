@@ -1,156 +1,90 @@
+<!DOCTYPE html>
 <html>
-<!--Lab 1 mobila tjänster och gränssnitt (https://github.com/sideshows/Git_hub). Av Gustav Wicklen och André Sydow -->
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Kattlexikon</title>
-	<link rel="stylesheet" href="themes/kattdjur.min.css" />
-	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   <meta name="author" content="Ben Howdle and Dan Matthew">
+   <meta name="description" content="A responsive movie poster grabber">
+   <title>Front Row by Ben Howdle</title>
+   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
+        <!--jQuery, linked from a CDN-->
+   <script src="scripts.js"></script>
+   <script type="text/javascript" src="http://use.typekit.com/oya4cmx.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<!-- about popup -->
-    <div id="about" data-theme="a" >
-        <h2>About</h2>
-        <p>Den här magiska grejen är skapad av <b>Gustav Wicklén</b> och <b>André Sydow</b><br>
-           Den coola informationen som presnenteras om kattdjutren kommer från allas vår polare <a href="http://se.wikipedia.org">Wikipedia</a></p>
-    </div>
-
-<!-- Page 1 -->
-
-    <div data-role="page" id="sida_1" data-theme="a">
-<!-- header med logo, hemknappp samt inhämtning av about popup -->
-        <div data-role="header">
-            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
-            <h1>Mjauuu <img src="./img/logo.png" height="10px" width="auto"> lexikon</h1>
-            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-        </div>
-<!-- main content -->
-        <div data-role="main" class="ui-content">
-            <h1>Kattdjur</h1>
-<!-- Klassen hämtar .txt via script -->
-            <p class="text-katter"></p>
-<!-- listvy med sökfunktion, placeholder, filter och divider -->
-            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
-                <li><a href="#lejon">Lejon <img src="./img/lejon.jpg" alt="Lejon"></a></li>
-                <li><a href="#tiger">Tiger <img src="./img/tiger.jpg" alt="Tiger"></a></li>
-            </ul>
-        </div>
-<!-- End main -->
-
-<!-- footer -->
-        <div data-role="footer" data-position="fixed">
-            <h1>Kattinfo lånad från wikipedia</h1>
-        </div>
-<!-- End footer -->
-
-    </div>
-<!-- End Page 1 -->
-
-<!-- Page 2 -->
-
-    <div data-role="page" id="tiger" data-theme="a">
-         <div data-role="header">
-            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
-            <h1>Mjauuu <img src="./img/logo.png" height="10px" width="auto"> lexikon</h1>
-            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-        </div>
-
-        <div data-role="main" class="ui-content">
-            <h1>Tiger</h1>
-<!-- Klassen hämtar .txt via script -->
-            <p class="text-tiger"></p>
-<!-- knapp som triggar bild popup som lightbox -->
-            <a href="#tigerbild" data-rel="popup" class="ui-btn ui-btn-inline" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du tigern</a>
-<!-- knapp till slidepanel-->
-            <a href="#tigerPanel"  class="ui-btn ui-btn-inline" >Mer tiger</a>
-            <div data-role="popup" id="tigerbild" data-overlay-theme="a" data-theme="a" data-corners="false">
-                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/tiger.jpg" style="max-height:512px;" alt="Tiger">
-            </div>
-<!-- listvy med sökfunktion, placeholder, filter och divider -->
-            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
-                <li><a href="#lejon">Lejon</a></li>
-                <li><a href="#tiger">Tiger</a></li>
-            </ul>
-        </div>
-<!-- slidepanel med tema b, karta samt externa länkar -->
-        <div data-role="panel" id="tigerPanel" data-theme="b">
-            <h2>Tiger fun facts</h2>
-            <p>Här bor tigern:</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Tiger_distribution3.PNG" style="max-width:100%;">
-            <p><br><a href="https://sv.wikipedia.org/wiki/Tiger">Wiki Tiger</a></p>
-        </div>
-
-<!-- footer -->
-        <div data-role="footer" data-position="fixed">
-            <h1>Kattinfo lånad från wikipedia</h1>
-        </div>
-
-<!-- End footer -->
-    </div>
-<!-- End Page 2 -->
-
-<!-- Page 3 -->
-
-    <div data-role="page" id="lejon" data-theme="a">
-         <div data-role="header">
-            <a href="#sida_1" class="ui-btn-left" data-rel="" data-position-to="window" data-transition="slideup" data-icon="home" data-theme="a" data-iconpos="notext">Home</a>
-            <h1>Mjauuu <img src="./img/logo.png" height="10px" width="auto"> lexikon</h1>
-            <a href="#about" class="ui-btn-right" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info" data-theme="a" data-iconpos="notext">About</a>
-        </div>
-        <div data-role="main" class="ui-content">
-            <h1>Lejon</h1>
-<!-- Klassen hämtar .txt via script -->
-            <p class="text-lejon"> </p>
-<!-- knapp som triggar bild popup som lightbox -->
-            <a href="#lejonbild" data-rel="popup" class="ui-btn ui-btn-inline" data-position-to="window" data-transition="fade"><img class="popphoto" >Här ser du Lejonet</a>
-                <div data-role="popup" id="lejonbild" data-overlay-theme="a" data-theme="a" data-corners="false">
-                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="./img/lejon.jpg" style="max-height:512px;" alt="Lejon">
-                </div>
-<!-- knapp till slidepanel-->
-            <a href="#lejonPanel"  class="ui-btn ui-btn-inline" >Mer lejon</a>
-<!-- listvy med sökfunktion, placeholder, filter och divider -->
-            <ul data-role="listview" data-filter="true" data-filter-placeholder="Sök på ett kattdjur..." data-autodividers="true">
-                <li><a href="#lejon">Lejon</a></li>
-                <li><a href="#tiger">Tiger</a></li>
-            </ul>
-        </div>
-<!-- slidepanel med tema b, karta samt externa länkar -->
-        <div data-role="panel" id="lejonPanel" data-theme="b">
-            <h2>Lejon fun facts</h2>
-            <p>Här bor Lejon:</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Lion_distribution.png" style="max-width:100%;">
-            <p><br><a href="https://sv.wikipedia.org/wiki/Lejon">Wiki Lejon</a></p>
-        </div>
-<!-- footer -->
-        <div data-role="footer" data-position="fixed">
-            <h1>Kattinfo lånad från wikipedia</h1>
-        </div>
-<!-- End footer -->
-    </div>
-<!-- End Page 3 -->
-
+<div class="container">
+   <header>
+      <h1>Front Row</h1>
+   </header>
+   <section id="fetch">
+      <input type="text" placeholder="Enter a movie title" id="term" />
+      <button id="search">Find me a poster</button>
+   </section>
+   <section id="poster">
+   </section>
+   <footer>
+      <p>Created by <a href="http://twostepmedia.co.uk">Ben Howdle</a></p>
+   </footer>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <script>
+    $(document).ready(function(){
 
-/* Kopplar popupfunktionen på about till alla sidor när domen laddas klart (Hämtad från stack)*/
-        $(function(){
-            $( "#about" ).enhanceWithin().popup();
-        });
-/* Hämtar .txt och skickar till klass (Hämtad från stack)*/
-        $(".text-lejon").load("./texter/lejon.txt");
-        $(".text-tiger").load("./texter/tiger.txt");
-        $(".text-katter").load("./texter/katter.txt");
+   $('#term').focus(function(){
+      var full = $("#poster").has("img").length ? true : false;
+      if(full == false){
+         $('#poster').empty();
+      }
+   });
 
+   var getPoster = function(){
+
+        var film = $('#term').val();
+
+         if(film == ''){
+
+            $('#poster').html("<h2 class='loading'>Ha! We haven't forgotten to validate the form! Please enter something.</h2>");
+
+         } else {
+
+            $('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
+
+            $.getJSON("http://api.themoviedb.org/2.1/Movie.search/en/json/23afca60ebf72f8d88cdcae2c4f31866/" + film + "?callback=?", function(json) {
+               if (json != "Nothing found."){
+                     $('#poster').html('<h2 class="loading">Well, gee whiz! We found you a poster, skip!</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
+                  } else {
+                     $.getJSON("http://api.themoviedb.org/2.1/Movie.search/en/json/23afca60ebf72f8d88cdcae2c4f31866/goonies?callback=?", function(json) {
+                        console.log(json);
+                        $('#poster').html('<h2 class="loading">We're afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
+                     });
+                  }
+             });
+
+          }
+
+        return false;
+   }
+
+   $('#search').click(getPoster);
+   $('#term').keyup(function(event){
+       if(event.keyCode == 13){
+           getPoster();
+       }
+   });
+
+});
     </script>
-
-
-
-
-
-
-
-
+    
 </body>
+    
 </html>
