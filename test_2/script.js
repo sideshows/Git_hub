@@ -1,9 +1,10 @@
-$(document).on('pageinit', '#home', function(){      
+$(document).ready(function() {
+    $('#search_movie').click(function() {
     var url = 'http://api.themoviedb.org/3/',
         mode = 'search/movie?query=',
-        movieName = '&query='+encodeURI('Batman'),        
-        key = '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';        
-    
+        movieName = '&query='+encodeURI('Django'),
+        key = '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+
     $.ajax({
         url: url + mode + key + movieName ,
         dataType: "jsonp",
@@ -13,25 +14,28 @@ $(document).on('pageinit', '#home', function(){
         },
         error: function (request,error) {
             alert('Network error has occurred please try again!');
-        }
-    });         
-});
 
-$(document).on('pagebeforeshow', '#headline', function(){      
+        }
+    });
+});
+});
+$(document).on('pagebeforeshow', '#headline', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
         if(row.id == movieInfo.id) {
             $('#movie-data').append('<li><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></li>');
             $('#movie-data').append('<li>Title: '+row.original_title+'</li>');
             $('#movie-data').append('<li>Release date'+row.release_date+'</li>');
-            $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');   
-            $('#movie-data').append('<li>Popularity : '+row.vote_average+'</li>');             
-            $('#movie-data').listview('refresh');            
+            $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
+            $('#movie-data').append('<li>Popularity : '+row.vote_average+'</li>');
+            $('#movie-data').listview('refresh');
+
+
         }
-    });    
+    });
 });
 
-$(document).on('vclick', '#movie-list li a', function(){  
+$(document).on('vclick', '#movie-list li a', function(){
     movieInfo.id = $(this).attr('data-id');
     $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
 });
@@ -41,8 +45,8 @@ var movieInfo = {
     result : null
 }
 
-var ajax = {  
-    parseJSONP:function(result){  
+var ajax = {
+    parseJSONP:function(result){
         movieInfo.result = result.results;
         $.each(result.results, function(i, row) {
             console.log(JSON.stringify(row));
@@ -51,3 +55,7 @@ var ajax = {
         $('#movie-list').listview('refresh');
     }
 }
+
+
+
+

@@ -6,43 +6,59 @@
 <script type="text/javascript" src="script.js"></script>
 <script src="script/jquery.mobile-1.4.5.min.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 <title>The Movie DB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<div data-role="page" id="home">
-    <div data-theme="a" data-role="header">
+    <div data-role="page" data-theme="a" id="home">
+        <div data-theme="a" data-role="header">
+        <h1>The Movie DB</h1>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain">
+            <form>
+                <label for="search-1">Search:</label>
+                <input type="search" name="search-1" id="search-1" value="" placeholder="Placeholder">
+            </form>
+    <button class="ui-btn ui-corner-all" id="search_movie">Find the movie</button>
+
         <h3>
             Movie List
         </h3>
-    </div>        
     <div data-role="content">
         <div class="example-wrapper" data-iscroll>
             <ul data-role="listview"  id="movie-list" data-theme="a">
-                
+
             </ul>
         </div>
     </div>
+
     <div data-theme="a" data-role="footer">
         <h1>Copyright 2013</h1>
-    </div>              
+    </div>
 </div>
+
+
+<!-- Start second page -->
+
 <div data-role="page" id="headline">
     <div data-theme="a" data-role="header">
-        <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>                        
+        <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
         <h3>
             Movie Info
         </h3>
-    </div>        
+    </div>
     <div data-role="content">
         <ul data-role="listview"  id="movie-data" data-theme="a">
-            
+
         </ul>
     </div>
-</div>    
-
-
 </div>
+
 
 
 </body>
