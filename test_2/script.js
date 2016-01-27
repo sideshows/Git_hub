@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(document).on('pagebeforeshow', '#home', function(){ 
+//$(document).ready(function () {
     $('#sok').submit(function(e) {
         e.preventDefault();
 
@@ -27,28 +28,23 @@ $(document).ready(function () {
 });
 });
 
-
+//Det som visas på individuell sida
 $(document).on('pagebeforeshow', '#headline', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
         if(row.id == movieInfo.id) {
             $('#movie-data').append('<li><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></li>');
             $('#movie-data').append('<li>Title: '+row.original_title+'</li>');
-            $('#movie-data').append('<li>Popularity : '+row.overview+'</li>');
+            $('#movie-data').append('<li>Overview : '+row.overview+'</li>');
             $('#movie-data').append('<li>Release date'+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
 
             $('#movie-data').listview('refresh');
-
-
         }
+     
     });
-});
-
-$(document).on('vclick', '#movie-list li a', function(){
-    movieInfo.id = $(this).attr('data-id');
-    $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+       console.log(movieInfo);
 });
 
 var movieInfo = {
@@ -56,12 +52,19 @@ var movieInfo = {
     result : null
 }
 
+$(document).on('vclick', '#movie-list li a', function(){
+    movieInfo.id = $(this).attr('data-id');
+    $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+});
+
+
+
 var ajax = {
     parseJSONP:function(result){
         movieInfo.result = result.results;
         $.each(result.results, function(i, row) {
             console.log(JSON.stringify(row));
-            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3></a><p>' + row.vote_average + '/10</p> <p>' + row.overview + '</p></li>');
+            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3><p>' + row.vote_average + '/10</p> <p>' + row.overview + '</p></a></li>');
         });
         $('#movie-list').listview('refresh');
     }
