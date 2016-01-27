@@ -2,13 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
-<script src="script/jquery.mobile-1.4.5.min.js"></script>
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-<title>The Movie DB</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Movie DB</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css"/>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<!-- <script src="script/jquery.mobile-1.4.5.min.js"></script> -->
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
 </head>
 
 <body>
@@ -20,11 +25,22 @@
 
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
-            <form>
-                <label for="search-1">Search:</label>
-                <input type="search" name="search-1" id="search-1" value="" placeholder="Placeholder">
-            </form>
-    <button class="ui-btn ui-corner-all" id="search_movie">Find the movie</button>
+            
+
+        <form action="" id="sok">
+                <label for="movie-search">Search:</label>
+                <input type="text" name="movie-search" id="movie-search" required >
+
+                <div>
+                    <input type="submit" value="Search movie" id="submit-search">
+                </div>
+        </form>
+            <div id="results-movies">
+                <em></em>
+            </div>
+            <a href="#headline">To page 2</a>
+
+
 
         <h3>
             Movie List
@@ -40,6 +56,7 @@
     <div data-theme="a" data-role="footer">
         <h1>Copyright 2013</h1>
     </div>
+
 </div>
 
 
@@ -48,14 +65,22 @@
 <div data-role="page" id="headline">
     <div data-theme="a" data-role="header">
         <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
-        <h3>
-            Movie Info
-        </h3>
+
     </div>
     <div data-role="content">
-        <ul data-role="listview"  id="movie-data" data-theme="a">
+        <div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+        <!-- <ul data-role="listview"  id="movie-data" data-theme="a">
 
-        </ul>
+        </ul> -->
     </div>
 </div>
 

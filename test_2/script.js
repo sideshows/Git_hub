@@ -1,8 +1,15 @@
-$(document).ready(function() {
-    $('#search_movie').click(function() {
-    var url = 'http://api.themoviedb.org/3/',
+$(document).ready(function () {
+    $('#sok').submit(function(e) {
+        e.preventDefault();
+
+        var $results = $('#results-movies'),
+            movie = $('#movie-search').val();
+            $results.html('Din film är: ' + movie )
+
+
+        var url = 'http://api.themoviedb.org/3/',
         mode = 'search/movie?query=',
-        movieName = '&query='+encodeURI('Django'),
+        movieName = '&query='+encodeURI(movie),
         key = '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
 
     $.ajax({
@@ -19,15 +26,19 @@ $(document).ready(function() {
     });
 });
 });
+
+
 $(document).on('pagebeforeshow', '#headline', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
         if(row.id == movieInfo.id) {
             $('#movie-data').append('<li><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></li>');
             $('#movie-data').append('<li>Title: '+row.original_title+'</li>');
+            $('#movie-data').append('<li>Popularity : '+row.overview+'</li>');
             $('#movie-data').append('<li>Release date'+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
-            $('#movie-data').append('<li>Popularity : '+row.vote_average+'</li>');
+            $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
+
             $('#movie-data').listview('refresh');
 
 
@@ -50,7 +61,7 @@ var ajax = {
         movieInfo.result = result.results;
         $.each(result.results, function(i, row) {
             console.log(JSON.stringify(row));
-            $('#movie-list').append('<li><a href="" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3><p>' + row.vote_average + '/10</p></a></li>');
+            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3></a><p>' + row.vote_average + '/10</p> <p>' + row.overview + '</p></li>');
         });
         $('#movie-list').listview('refresh');
     }
