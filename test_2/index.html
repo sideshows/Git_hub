@@ -18,9 +18,11 @@
 <body>
 
 <!--Main Page -->
+
     <div data-role="page" data-theme="a" id="home">
         <!--Header-->
         <div data-theme="a" data-role="header">
+            <a href="#subscriptions" class="ui-btn-right" data-transition="slide" data-direction="reverse">My Movies</a>
             <h1>The Movie DB</h1>
         </div>
         <!--Main-->
@@ -52,6 +54,7 @@
 
 
 <!-- Single movie view -->
+
     <div data-role="page" id="headline">
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn" data-transition="slide" data-direction="reverse">Back</a>
@@ -64,6 +67,13 @@
         </div>
     </div>
 
+<!-- Subscribe page -->
+
+    <div data-role="page" id="subscriptions">
+        <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn-right" data-transition="slide">Back</a>
+             <h1>The Movie DB</h1>
+    </div>
 
 </body>
 </html>

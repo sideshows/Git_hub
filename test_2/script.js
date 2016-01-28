@@ -67,7 +67,7 @@ var ajax = {
         movieInfo.result = result.results;
         $.each(result.results, function(i, row) {
             console.log(JSON.stringify(row));
-            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3><p>' + row.vote_average + '/10</p> <p>' + row.overview + '</p></a></li>');
+            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
         $('#movie-list').listview('refresh');
     }
