@@ -1,4 +1,4 @@
-$(document).on('pagebeforeshow', '#home', function(){ 
+$(document).on('pagebeforeshow', '#home', function(){
 //$(document).ready(function () {
     $('#sok').submit(function(e) {
         e.preventDefault();
@@ -32,19 +32,20 @@ $(document).on('pagebeforeshow', '#home', function(){
 $(document).on('pagebeforeshow', '#headline', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
+
         if(row.id == movieInfo.id) {
             $('#movie-data').append('<li><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></li>');
             $('#movie-data').append('<li>Title: '+row.original_title+'</li>');
             $('#movie-data').append('<li>Overview : '+row.overview+'</li>');
-            $('#movie-data').append('<li>Release date'+row.release_date+'</li>');
+            $('#movie-data').append('<li>Release date: '+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
 
             $('#movie-data').listview('refresh');
         }
-     
+
     });
-       console.log(movieInfo);
+
 });
 
 var movieInfo = {
@@ -52,9 +53,10 @@ var movieInfo = {
     result : null
 }
 
-$(document).on('vclick', '#movie-list li a', function(){
+$(document).on('click', '#movie-list li a', function(){
     movieInfo.id = $(this).attr('data-id');
     $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+
 });
 
 
@@ -69,6 +71,7 @@ var ajax = {
         $('#movie-list').listview('refresh');
     }
 }
+
 
 
 
