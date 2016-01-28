@@ -41,6 +41,7 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
 
+
             $('#movie-data').listview('refresh');
         }
 
@@ -71,7 +72,6 @@ var ajax = {
         $('#movie-list').listview('refresh');
     }
 }
-
 
 
 
