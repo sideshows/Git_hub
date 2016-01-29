@@ -5,75 +5,46 @@
 	
 	<!-- meta data -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="Description" content="Taco Findr - for the iPhone." />
-    <meta name="keywords" content="" />
-    <meta name="Author" content="Aldo Lugo" />
-    <meta http-equiv="Content-Language" content="en-gb" />
-    <meta name="language" content="English" />
-    <meta name="copyright" content="Copyright Time" />
-    <meta name="robots" content="index,follow" />
-    <meta name="revisit-after" content="7 Days" />
-    <meta http-equiv="imagetoolbar" content="false" />
+
 	
 	<!-- apple web app -->
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	
-	<link rel="stylesheet" href="jquery.mobile-1.0b1.css" />
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<script type="text/javascript" src="js/app.js?v=25"></script>
-	<style type="text/css">
-		.ui-btn-text {
-			white-space: normal !important;
-		}
-		.ui-li-desc {
-			white-space: normal !important;
-			}
-			.ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon {
-min-height: 20px;
-padding-left: 32px !important;
-}
-#noErrors{
-	color:#000;
-	text-align:center;
-	background-color:#fff5c2;
-}
-	</style>
-</head> 
-<body> 
+	<link rel="stylesheet" href="css/style.css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
 
-<div data-role="page" id="TaskView">
+	<script type="text/javascript" src="js/app.js"></script>
+    </head>    
+<body>
+    
+    <body data-ng-app="">
+<div class="container" data-ng-controller="TodoController">
+	<header class="app-header">
+		<h1 class="app-title">{{ appTitle }}</h1>
+		<h1 class="app-headline">{{ appHeadline }}</h1>
+	</header>
 
-	<div data-role="header" data-theme="a">
-		<a href="#AddTasks" data-role="button" class="ui-btn-right homeBtn" data-theme="c" data-icon="plus" data-transition="slideup">Add</a>
-		<h1>Tasks</h1>
-	</div>
-	<div data-role="content">
-		<ul data-role="listview" data-theme="c" id="tasks">
-			<p id="noErrors" style="display:none;">You have no tasks.</p>
+	<section class="app-body">
+		<section class="archive-control">
+			<span>{{ remaining() }} of {{ todos.length }} remaining</span>
+			<p>[ <a href="" data-ng-click="archive()">Remove Completed Items</a> ]</p>
+		</section>
+
+		<ul class="unstyled">
+			<li data-ng-repeat="todo in todos track by $index">
+				<input type="checkbox" data-ng-model="todo.done">
+				<span class="done-{{ todo.done }}">{{ todo.text }}</span>
+			</li>
 		</ul>
-	</div>
+
+		<form data-ng-submit="addTodo()" class="todo-form">
+			<input type="text" data-ng-model="todoText" placeholder="Enter new ToDo item" />
+			<br />
+			<input type="submit" value="Add Task" />
+		</form>
+	</section>
 </div>
 
-
-<div data-role="page" id="AddTasks">
-	
-	<div data-role="header" data-theme="a">
-	<a href="#TaskView" data-role="button" class="ui-btn-right homeBtn" data-theme="c">Tasks</a>
-		<h1>Add New Task</h1>
-	</div>
-		<div data-role="content">
-				<div class="form-area"> 
-				  <form id="tasks-form"> 
-					<input id="taskName">
-					<input type="button" value="Add" id="addTask" data-icon="plus" />
-				 </form> 	
-				</div>
-		</div>
-</div>
 
 
 </body>
