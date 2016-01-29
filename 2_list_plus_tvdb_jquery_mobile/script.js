@@ -40,6 +40,8 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#movie-data').append('<li>Release date: '+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
+            $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
+            
 
 
             $('#movie-data').listview('refresh');
@@ -79,10 +81,8 @@ var ajax = {
 ////////////LIST SAVED MOVIES LOCAL STORAGE
 
 function appendTaskToList(val) {
-    $('#list').append("<li>" + movieInfo.id + "  <a href='#' class='done-btn'>Done</a> <a href='#' class='cancel-btn'>Cancel Task</a></li>");
- 
+    $('#list').append("<li>" + movieInfo.id + " <a href='#' class='cancel-btn'>Cancel Task</a></li>");
 }
-
 
 if (localStorage['tasks']) {
     var tasks = JSON.parse(localStorage['tasks']);
@@ -109,8 +109,9 @@ var addTask = function(){
     
     // reset the input field and focus it.
     $('#name').val("").focus();
+    
 }
-
+//if click favorite, add to ID to list
 $('#add-btn').click(addTask);
 $('#name').keyup(function(e){
     if (e.keyCode === 13) {
