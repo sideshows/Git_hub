@@ -1,3 +1,6 @@
+
+
+//TODO LIST START
 function TodoController ($scope) {
 	$scope.appTitle = "Katie's Awesome ToDo App";
 	$scope.appHeadline = "This one will save to local storage!";
@@ -32,3 +35,4 @@ function TodoController ($scope) {
 		localStorage.setItem('todos', JSON.stringify($scope.todos));
 	};
 }
+//TODO LIST END
