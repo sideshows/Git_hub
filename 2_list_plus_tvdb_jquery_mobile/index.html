@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Movie DB</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!--<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css"/>-->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+<link rel="stylesheet" type="text/css" href="themes/Test.css">
+<!-- <script src="script/jquery.mobile-1.4.5.min.js"></script> -->
+
+</head>
+
+<body>
+
+<!--Main Page -->
+
+    <div data-role="page" data-theme="a" id="home">
+        <!--Header-->
+        <div data-theme="a" data-role="header">
+            <a href="#subscriptions" class="ui-btn-right" data-transition="slide" data-direction="reverse">My Movies</a>
+            <h1>The Movie DB</h1>
+        </div>
+        <!--Main-->
+ 
+        
+              <!--TODO-->
+        <h1>TodoList</h1>
+<input type='text' id='name' placeholder='New Task'>
+<a href='#' id='add-btn'>Add Task</a>
+<ul id='list'>
+</ul>
+        
+        
+        
+        
+    <!--TODO END-->
+        
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <form action="" id="sok">
+                    <label for="movie-search">Search:</label>
+                    <input type="text" name="movie-search" id="movie-search" required>
+                    <div>
+                        <input type="submit" value="Search movie" id="submit-search">
+                    </div>
+                </form>
+                <div id="results-movies">
+                </div>
+                <h3>Movie List
+                </h3>
+                <div class="example-wrapper">
+                    <ul data-role="listview"  id="movie-list" data-theme="a">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Footer-->
+        <div data-theme="a" data-role="footer">
+            <h1>Copyright 2013</h1>
+        </div>
+    </div>
+
+
+
+<!-- Single movie view -->
+
+    <div data-role="page" id="headline">
+        <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn" data-transition="slide" data-direction="reverse">Back</a>
+             <h1>The Movie DB</h1>
+        </div>
+        <!--Main-->
+        <div data-role="main" class="example-wraper">
+            <ul data-role="listview" id="movie-data" data-theme="a">
+            </ul>
+        </div>
+    </div>
+
+<!-- Subscribe page -->
+
+    <div data-role="page" id="subscriptions">
+        <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn-right" data-transition="slide">Back</a>
+             <h1>The Movie DB</h1>
+        </div>
+    </div>  
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="list.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+
+</body>
+</html>
+
