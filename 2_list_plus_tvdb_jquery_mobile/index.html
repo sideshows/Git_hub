@@ -25,18 +25,14 @@
             <h1>The Movie DB</h1>
         </div>
         <!--Main-->
- 
-        
-              <!--TODO-->
-        <h1>Following</h1>
-        <!--<input type='text' id='name' placeholder='New Task'>-->
-        <ul id='list'></ul>
-        
-        
-        
-        
+
+
+
+
+
+
     <!--TODO END-->
-        
+
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <form action="" id="sok">
@@ -70,12 +66,33 @@
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn" data-transition="slide" data-direction="reverse">Back</a>
              <h1>The Movie DB</h1>
-            <a href='#' id='add-btn'>Follow</a>
+
+
+            <!-- popup som bekräftar premunation -->
+
+            <a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-arrow-r ui-btn-icon-left ui-btn-b">test</a>
+            <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+
+            <div data-role="header" data-theme="a">
+                <h1>Subcribe</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <h3 class="ui-title">You subcribed to ..</h3>
+                    <p id="movie-data">It will be stored in your movie list</p>
+                    <a href="#home" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="slide" data-direction="reverse">Ok</a>
+                </div>
+            </div>
+
+
         </div>
         <!--Main-->
         <div data-role="main" class="example-wraper">
             <ul data-role="listview" id="movie-data" data-theme="a">
             </ul>
+        </div>
+        <!--Footer-->
+        <div data-theme="a" data-role="footer">
+            <h1>Copyright 2013</h1>
         </div>
     </div>
 
@@ -86,9 +103,22 @@
             <a href="#home" class="ui-btn-right" data-transition="slide">Back</a>
              <h1>The Movie DB</h1>
         </div>
-    </div>  
-    
-    
+
+        <div data-role="content">
+            <h1>Following</h1>
+            <div class="example-wrapper">
+                <ul data-role="listview" id="subscribe-title" data-theme="a">
+
+                </ul>
+            </div>
+        </div><!-- /content -->
+        <!--Footer-->
+        <div data-theme="a" data-role="footer">
+            <h1>Copyright 2013</h1>
+        </div>
+    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="list.js"></script>

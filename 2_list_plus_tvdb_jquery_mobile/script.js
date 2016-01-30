@@ -1,5 +1,5 @@
-$(document).on('pagebeforeshow', '#home', function(){
-//$(document).ready(function () {
+// Tror inte vi behöver den här... =)  $(document).on('pagebeforeshow', '#home', function(){
+
     $('#sok').submit(function(e) {
         e.preventDefault();
 
@@ -24,8 +24,10 @@ $(document).on('pagebeforeshow', '#home', function(){
             alert('Network error has occurred please try again!');
 
         }
+
     });
-});
+
+// Tror inte vi behöver den här... =)  });
 });
 
 //Det som visas på individuell sida
@@ -41,12 +43,12 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
             $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
-            
+
 
 
             $('#movie-data').listview('refresh');
         }
-        console.log(movieInfo.id);
+
     });
 
 });
@@ -58,11 +60,12 @@ var movieInfo = {
 
 $(document).on('click', '#movie-list li a', function(){
     movieInfo.id = $(this).attr('data-id');
-    $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+    $.mobile.changePage( "#headline", { transition: "slide", changeHash: true });
 
 });
 
 
+// List
 
 var ajax = {
     parseJSONP:function(result){
@@ -75,13 +78,19 @@ var ajax = {
     }
 }
 
+// Tömmer resultaten i listan på fokus
+
+$('#movie-search').on('focus', function() {
+    $('#movie-list').children().remove();
+});
+
 
 
 
 ////////////LIST SAVED MOVIES LOCAL STORAGE
 
 function appendTaskToList(val) {
-    $('#list').append("<li>" + movieInfo.id + " <a href='#' class='cancel-btn'>Cancel Task</a></li>");
+    $('#subscribe-title').append("<li> Movie ID: " + movieInfo.id + " </li>");
 }
 
 if (localStorage['tasks']) {
@@ -97,22 +106,22 @@ for(var i=0;i<tasks.length;i++) {
 var addTask = function(){
     // get value from #name input
     var val = $('#name').val();
-    
+
     // add the task to the array
     tasks.push(val);
-    
+
     // save to local storage
     localStorage["tasks"] = JSON.stringify(tasks);
-    
+
     // append the name to the list
     appendTaskToList(val);
-    
+
     // reset the input field and focus it.
     $('#name').val("").focus();
-    
+
 }
 //if click favorite, add to ID to list
-$('#add-btn').click(addTask);
+$('#popupDialog').click(addTask);
 $('#name').keyup(function(e){
     if (e.keyCode === 13) {
         addTask();
