@@ -5,7 +5,7 @@
 
         var $results = $('#results-movies'),
             movie = $('#movie-search').val();
-            $results.html('Din film är: ' + movie )
+            // $results.html('Din film är: ' + movie )
 
 
         var url = 'http://api.themoviedb.org/3/',
@@ -31,6 +31,7 @@
 });
 
 //Det som visas på individuell sida
+
 $(document).on('pagebeforeshow', '#headline', function(){
     $('#movie-data').empty();
     $.each(movieInfo.result, function(i, row) {
@@ -42,7 +43,7 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#movie-data').append('<li>Release date: '+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
-            $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
+            // $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
 
 
 
@@ -80,9 +81,40 @@ var ajax = {
 
 // Tömmer resultaten i listan på fokus
 
-$('#movie-search').on('focus', function() {
+$('#submit-search').on('click', function() {
     $('#movie-list').children().remove();
 });
+
+
+
+// Subscribe page
+
+
+// $(document).on('pageinit', '#subscriptions', function(){
+
+// var request = new XMLHttpRequest();
+
+// request.open('GET', 'https://api.themoviedb.org/3/movie/550?api_key=5fbddf6b517048e25bc3ac1bbeafb919');
+
+// request.setRequestHeader('Accept', 'application/json');
+
+// request.onreadystatechange = function () {
+//   if (this.readyState === 4) {
+
+//     console.log('Status:', this.status);
+//     console.log('Headers:', this.getAllResponseHeaders());
+//     console.log('Body:', this.responseText);
+
+//   }
+// };
+
+// request.send();
+
+
+
+
+// });
+
 
 
 
@@ -90,7 +122,7 @@ $('#movie-search').on('focus', function() {
 ////////////LIST SAVED MOVIES LOCAL STORAGE
 
 function appendTaskToList(val) {
-    $('#subscribe-title').append("<li> Movie ID: " + movieInfo.id + " </li>");
+     $('#subscribe-title').append("<li> Movie ID: " + movieInfo.id + " </li>");
 }
 
 if (localStorage['tasks']) {
