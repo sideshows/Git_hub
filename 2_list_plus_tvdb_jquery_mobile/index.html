@@ -51,12 +51,31 @@
                     </ul>
                 </div>
             </div>
+
+
+
+
+
+<!-- sandbox  -->
+                 <form action="" id="film-id">
+                    <label for="movie-search">Id Sök:</label>
+                    <input type="text" name="ID Sök" id="text-id" required>
+                    <div>
+                        <input type="submit" value="Search ID" id="knapp-id">
+                    </div>
+                </form>
+<!-- End Sandbox -->
+
+
         </div>
         <!--Footer-->
         <div data-theme="a" data-role="footer">
             <h1>Copyright 2013</h1>
         </div>
     </div>
+
+
+
 
 
 
@@ -77,8 +96,10 @@
                 <h1>Subcribe</h1>
                 </div>
                 <div role="main" class="ui-content">
-                    <h3 class="ui-title">You subcribed to ..</h3>
-                    <p id="movie-data">It will be stored in your movie list</p>
+
+                <!--  Visar titeln på den film du prenumerera på i popup dialog -->
+                    <h3 class="ui-title">You subcribed to: <span id="subscription-title"></span></h3>
+                    <p>It will be stored in your movie list</p>
                     <a href="#home" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="slide" data-direction="reverse">Ok</a>
                 </div>
             </div>

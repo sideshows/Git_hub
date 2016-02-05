@@ -37,15 +37,16 @@ $(document).on('pagebeforeshow', '#headline', function(){
     $.each(movieInfo.result, function(i, row) {
 
         if(row.id == movieInfo.id) {
-            $('#movie-data').append('<li><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></li>');
-            $('#movie-data').append('<li>Title: '+row.original_title+'</li>');
-            $('#movie-data').append('<li>Overview : '+row.overview+'</li>');
+            $('#movie-data').append('<div><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></div>');
+            $('#movie-data').append('<h1>Title: '+row.original_title+'</h1>');
+            $('#movie-data').append('<div>Overview : '+row.overview+'</div>');
             $('#movie-data').append('<li>Release date: '+row.release_date+'</li>');
             $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
-            // $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
+            $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
 
-
+// Visar titeln på den film du prenumerera på i popup dialog
+            $('#subscription-title').append(row.original_title);
 
             $('#movie-data').listview('refresh');
         }
@@ -87,10 +88,51 @@ $('#submit-search').on('click', function() {
 
 
 
-// Subscribe page
+// -------------------------Subscribe page ------------------------------------------------------
 
 
-// $(document).on('pageinit', '#subscriptions', function(){
+// $(document).on('pagebeforeshow', '#subscriptions', function(){
+
+
+//   var url = 'https://api.themoviedb.org/3/movie/550?api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+//         // ident = 'movie/550',
+//         // key = '?&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+
+//     $.ajax({
+//         url: url,
+//         dataType: "jsonp",
+//         async: true,
+//         success: function (result) {
+//             console.log(url);
+//             ajax.parseJSONP(result);
+//         },
+//         error: function (request,error) {
+//             alert('Network error has occurred please try again!');
+
+//         }
+
+// });
+
+//     var premInfo = {
+//     id : null,
+//     result : null
+// }
+
+// $(document).on('click', '#subscriptions a', function(){
+//     movie.id = $(this).attr('data-id');
+//     $.mobile.changePage( "#subscriptions", { transition: "slide", changeHash: true });
+
+// });
+
+// var prem = {
+//     parseJSONP:function(result){
+//         premInfo.result = result.results;
+//         $.each(result.results, function() {
+//             console.log(JSON.stringify);
+//         });
+
+//     }
+// }
 
 // var request = new XMLHttpRequest();
 
@@ -104,6 +146,8 @@ $('#submit-search').on('click', function() {
 //     console.log('Status:', this.status);
 //     console.log('Headers:', this.getAllResponseHeaders());
 //     console.log('Body:', this.responseText);
+//     console.log(this.responseText[4]);
+
 
 //   }
 // };
@@ -172,5 +216,48 @@ $('#name').keyup(function(e){
 
 ////////////LIST SAVED MOVIES LOCAL STORAGE -----END-----
 
+// -------------------Sandbox--------------------------------
+
+(function () {
+
+    $(init);
+
+    function init() {
 
 
+
+        $.ajax({
+            url: "https://api.themoviedb.org/3/movie/339?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+            dataType: "jsonp",
+            success: renderMovies
+        });
+    }
+
+
+
+        function renderMovies(movies) {
+
+         // console.log(movies);
+         // var json_x = $.parseJSON(movies);
+
+         // $.each(movies, function (i, movies) {
+         //    var test = JSON.stringify(movies);
+
+console.log(movies);
+
+            for (var m in movies) {
+                var movie = movies[m];
+                var title = movies.title;
+                var tagline = movies.tagline;
+                console.log(title);
+            }
+
+             $('ul').append('<li><h3>' + title + '</h3><p>' + tagline + '</p></li>');
+
+
+
+
+
+        }
+
+}) ();
