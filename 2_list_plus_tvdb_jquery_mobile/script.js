@@ -1,20 +1,18 @@
-// Tror inte vi behöver den här... =)  $(document).on('pagebeforeshow', '#home', function(){
+//-------------- Movie search ------------------------
 
-    $('#sok').submit(function(e) {
+    $('#search').submit(function(e) {
         e.preventDefault();
 
-        var $results = $('#results-movies'),
-            movie = $('#movie-search').val();
-            // $results.html('Din film är: ' + movie )
-
+        var $results = $('#results-tv'),
+            tv = $('#tv-search').val();
 
         var url = 'http://api.themoviedb.org/3/',
-        mode = 'search/movie?query=',
-        movieName = '&query='+encodeURI(movie),
+        mode = 'search/tv?query=',
+        tvName = '&query='+encodeURI(tv),
         key = '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
 
     $.ajax({
-        url: url + mode + key + movieName ,
+        url: url + mode + key + tvName ,
         dataType: "jsonp",
         async: true,
         success: function (result) {
@@ -24,140 +22,125 @@
             alert('Network error has occurred please try again!');
 
         }
-
     });
-
-// Tror inte vi behöver den här... =)  });
 });
 
-//Det som visas på individuell sida
+// --------------Headline Page ----------------------------------
 
 $(document).on('pagebeforeshow', '#headline', function(){
-    $('#movie-data').empty();
-    $.each(movieInfo.result, function(i, row) {
+    $('#tv-data').empty();
+    $.each(tvInfo.result, function(i, row) {
 
-        if(row.id == movieInfo.id) {
-            $('#movie-data').append('<div><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></div>');
-            $('#movie-data').append('<h1>Title: '+row.original_title+'</h1>');
-            $('#movie-data').append('<div>Overview : '+row.overview+'</div>');
-            $('#movie-data').append('<li>Release date: '+row.release_date+'</li>');
-            $('#movie-data').append('<li>Popularity : '+row.popularity+'</li>');
-            $('#movie-data').append('<li>Vote Average: '+row.vote_average+'</li>');
-            $('#movie-data').append('<ul>Vote Average: <a href="https://image.tmdb.org/t/p/w780'+row.backdrop_path+'">Backdrop</a></ul>');
+        if(row.id == tvInfo.id) {
+            $('#tv-data').append('<div><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></div>');
+            $('#tv-data').append('<h1>'+row.original_name+'</h1>');
+            $('#tv-data').append('<div>Overview : '+row.overview+'</div>');
+            $('#tv-data').append('<li>Release date: '+row.release_date+'</li>');
+            $('#tv-data').append('<li>Popularity : '+row.popularity+'</li>');
+            $('#tv-data').append('<li>First air date : '+row.first_air_date+'</li>');
+            $('#tv-data').append('<li>Vote Average: '+row.vote_average+'</li>');
+            $('#tv-data').append('<div>backdrop_path: <img src="http://image.tmdb.org/t/p/w92'+row.backdrop_path+'"></a></div>');
 
-// Visar titeln på den film du prenumerera på i popup dialog
-            $('#subscription-title').append(row.original_title);
 
-            $('#movie-data').listview('refresh');
+//------------- Shows the title of subscribed tv-show --------------
+
+            $('#subscription-title').append('<h1>'+row.original_name+'</h1>');
+            $('#tv-data').listview('refresh');
         }
-
     });
-
 });
 
-var movieInfo = {
+var tvInfo = {
     id : null,
     result : null
 }
 
-$(document).on('click', '#movie-list li a', function(){
-    movieInfo.id = $(this).attr('data-id');
-    $.mobile.changePage( "#headline", { transition: "slide", changeHash: true });
+//-------------- Transfer the data to headline page ------------------
 
+$(document).on('click', '#tv-list li a', function(){
+    tvInfo.id = $(this).attr('data-id');
+    $.mobile.changePage( "#headline", { transition: "slide", changeHash: true });
 });
 
+//--------------- Closes the dialog popup ----------------------
 
-// List
+$(document).on('click', '#btnSubcribe', function() {
+    setTimeout(function () {
+    $('#popupDialog').popup('close');
+    }, 1500);
+});
+
+//------------- Displays list of search ---------------------
 
 var ajax = {
     parseJSONP:function(result){
-        movieInfo.result = result.results;
+        tvInfo.result = result.results;
         $.each(result.results, function(i, row) {
-            console.log(JSON.stringify(row));
-            $('#movie-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.title + '</h3><p>' + row.vote_average + '/10</p></a></li>');
+            console.log(result);
+            $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
-        $('#movie-list').listview('refresh');
+        $('#tv-list').listview('refresh');
     }
 }
 
-// Tömmer resultaten i listan på fokus
+//-------------- Empty the tv-list on input field click ------------------------
 
 $('#submit-search').on('click', function() {
-    $('#movie-list').children().remove();
+    $('#tv-list').children().remove();
 });
 
 
 
 // -------------------------Subscribe page ------------------------------------------------------
 
-
-// $(document).on('pagebeforeshow', '#subscriptions', function(){
-
-
-//   var url = 'https://api.themoviedb.org/3/movie/550?api_key=5fbddf6b517048e25bc3ac1bbeafb919';
-//         // ident = 'movie/550',
-//         // key = '?&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
-
-//     $.ajax({
-//         url: url,
-//         dataType: "jsonp",
-//         async: true,
-//         success: function (result) {
-//             console.log(url);
-//             ajax.parseJSONP(result);
-//         },
-//         error: function (request,error) {
-//             alert('Network error has occurred please try again!');
-
-//         }
-
-// });
-
-//     var premInfo = {
-//     id : null,
-//     result : null
-// }
-
-// $(document).on('click', '#subscriptions a', function(){
-//     movie.id = $(this).attr('data-id');
-//     $.mobile.changePage( "#subscriptions", { transition: "slide", changeHash: true });
-
-// });
-
-// var prem = {
-//     parseJSONP:function(result){
-//         premInfo.result = result.results;
-//         $.each(result.results, function() {
-//             console.log(JSON.stringify);
-//         });
-
-//     }
-// }
-
-// var request = new XMLHttpRequest();
-
-// request.open('GET', 'https://api.themoviedb.org/3/movie/550?api_key=5fbddf6b517048e25bc3ac1bbeafb919');
-
-// request.setRequestHeader('Accept', 'application/json');
-
-// request.onreadystatechange = function () {
-//   if (this.readyState === 4) {
-
-//     console.log('Status:', this.status);
-//     console.log('Headers:', this.getAllResponseHeaders());
-//     console.log('Body:', this.responseText);
-//     console.log(this.responseText[4]);
+$('#btnSubcribe').on('click', function() {
 
 
-//   }
-// };
+    (function () {
+    $(init);
+    function init() {
 
-// request.send();
+        $.ajax({
+            url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+            dataType: "jsonp",
+            success: renderTv
+        });
+    }
+
+        function renderTv(tvs) {
+
+            for (var m in tvs) {
+                var tv = tvs[m];
+                var title = tvs.name;
+                var poster = tvs.poster_path;
+                var seasons = tvs.number_of_seasons;
+            }
+
+            // --------------Sand box
+
+            $('#test').append('<li><h3>' + title + '</h3></li>').trigger( 'create' );
+
+            // --------------End Sand box
+
+            $('#subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
+            $('#subscribe-title').append('<li><h3>' + title + '</h3></li>');
+            $('#subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
 
 
 
 
-// });
+
+
+             console.log(tvs);
+
+        }
+    })
+();
+});
+
+
+
+
 
 
 
@@ -166,7 +149,7 @@ $('#submit-search').on('click', function() {
 ////////////LIST SAVED MOVIES LOCAL STORAGE
 
 function appendTaskToList(val) {
-     $('#subscribe-title').append("<li> Movie ID: " + movieInfo.id + " </li>");
+     // $('#subscribe-title').append("<li> Movie ID: " + tvInfo.id + " </li>");
 }
 
 if (localStorage['tasks']) {
@@ -218,46 +201,7 @@ $('#name').keyup(function(e){
 
 // -------------------Sandbox--------------------------------
 
-(function () {
-
-    $(init);
-
-    function init() {
-
-
-
-        $.ajax({
-            url: "https://api.themoviedb.org/3/movie/339?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
-            dataType: "jsonp",
-            success: renderMovies
-        });
-    }
-
-
-
-        function renderMovies(movies) {
-
-         // console.log(movies);
-         // var json_x = $.parseJSON(movies);
-
-         // $.each(movies, function (i, movies) {
-         //    var test = JSON.stringify(movies);
-
-console.log(movies);
-
-            for (var m in movies) {
-                var movie = movies[m];
-                var title = movies.title;
-                var tagline = movies.tagline;
-                console.log(title);
-            }
-
-             $('ul').append('<li><h3>' + title + '</h3><p>' + tagline + '</p></li>');
 
 
 
 
-
-        }
-
-}) ();

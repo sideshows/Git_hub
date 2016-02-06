@@ -8,7 +8,7 @@
 <!--<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css"/>-->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
 <link rel="stylesheet" type="text/css" href="themes/Test.css">
 <!-- <script src="script/jquery.mobile-1.4.5.min.js"></script> -->
 
@@ -16,58 +16,35 @@
 
 <body>
 
-<!--Main Page -->
+<!--Start Page -->
 
     <div data-role="page" data-theme="a" id="home">
         <!--Header-->
         <div data-theme="a" data-role="header">
-            <a href="#subscriptions" class="ui-btn-right" data-transition="slide" data-direction="reverse">My Movies</a>
+            <a href="#subscriptions" class="ui-btn-right" id="fetchId" data-transition="slide" data-direction="reverse">My Movies</a>
             <h1>The Movie DB</h1>
         </div>
-        <!--Main-->
 
-
-
-
-
-
-    <!--TODO END-->
-
+<!-- Main content -->
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
-                <form action="" id="sok">
+                <form action="" id="search">
                     <label for="movie-search">Search:</label>
-                    <input type="text" name="movie-search" id="movie-search" required>
+                    <input type="text" name="tv-search" id="tv-search" required>
                     <div>
-                        <input type="submit" value="Search movie" id="submit-search">
+                        <input type="submit" value="Search tv" id="submit-search">
                     </div>
                 </form>
-                <div id="results-movies">
-                </div>
                 <h3>Movie List
                 </h3>
                 <div class="example-wrapper">
-                    <ul data-role="listview"  id="movie-list" data-theme="a">
+                    <ul data-role="listview"  id="tv-list" data-theme="a">
                     </ul>
                 </div>
             </div>
 
-
-
-
-
-<!-- sandbox  -->
-                 <form action="" id="film-id">
-                    <label for="movie-search">Id Sök:</label>
-                    <input type="text" name="ID Sök" id="text-id" required>
-                    <div>
-                        <input type="submit" value="Search ID" id="knapp-id">
-                    </div>
-                </form>
-<!-- End Sandbox -->
-
-
         </div>
+
         <!--Footer-->
         <div data-theme="a" data-role="footer">
             <h1>Copyright 2013</h1>
@@ -76,20 +53,17 @@
 
 
 
-
-
-
-<!-- Single movie view -->
+<!-- Headline page -->
 
     <div data-role="page" id="headline">
         <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn" data-transition="slide" data-direction="reverse">Back</a>
+            <a href="#home" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-transition="slide" data-direction="reverse">Back</a>
              <h1>The Movie DB</h1>
 
 
             <!-- popup som bekräftar premunation -->
 
-            <a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-arrow-r ui-btn-icon-left ui-btn-b">test</a>
+            <a href="#popupDialog" data-rel="popup" data-position-to="window" id="btnSubcribe" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-left">Subcribe</a>
             <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
 
             <div data-role="header" data-theme="a">
@@ -108,7 +82,7 @@
         </div>
         <!--Main-->
         <div data-role="main" class="example-wraper">
-            <ul data-role="listview" id="movie-data" data-theme="a">
+            <ul data-role="listview" id="tv-data" data-theme="a">
             </ul>
         </div>
         <!--Footer-->
@@ -127,11 +101,22 @@
 
         <div data-role="content">
             <h1>Following</h1>
-            <div class="example-wrapper">
-                <ul data-role="listview" id="subscribe-title" data-theme="a">
 
-                </ul>
+
+<!-- Sandbox -->
+
+        <div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+            <div data-role="collapsible">
+                <h3 id="test"></h3>
+                <ul data-role="listview" id="subscribe-title" data-theme="a"></ul>
             </div>
+        </div>
+
+<!-- End Sandbox -->
+
+
+
+
         </div><!-- /content -->
         <!--Footer-->
         <div data-theme="a" data-role="footer">
