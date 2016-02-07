@@ -42,9 +42,14 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#tv-data').append('<div>backdrop_path: <img src="http://image.tmdb.org/t/p/w92'+row.backdrop_path+'"></a></div>');
 
 
-//------------- Shows the title of subscribed tv-show --------------
+//------------- Shows the title of subscribed tv-show, and removes it after --------------
 
-            $('#subscription-title').append('<h1>'+row.original_name+'</h1>');
+        $('#btnSubcribe').click(function (el) {
+            setTimeout(function () {
+                el.children().remove('h1');
+                }, 10000);
+                }($('#subscription-title').append('<h1>'+row.original_name+'</h1>')));
+
             $('#tv-data').listview('refresh');
         }
     });
@@ -118,16 +123,21 @@ $('#btnSubcribe').on('click', function() {
 
             // --------------Sand box
 
-            $('#test').append('<li><h3>' + title + '</h3></li>').trigger( 'create' );
-
+            // $('#test').append('<li><h3>' + title + '</h3></li>').trigger( 'create' );
+            // $('#test').append('<li><h3>' + title + '</h3></li>');
             // --------------End Sand box
 
+
             $('#subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
-            $('#subscribe-title').append('<li><h3>' + title + '</h3></li>');
-            $('#subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
+            $('#subscribe-title').append('<li><a href="#single-subscribe-title" data-transition="slideup" <h3>' + title + '</h3></a></li>');
+
+            $('#single-subscribe-title').append('<li><h3>Number of seasons:' + title + '</h3></li>');
+            $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
+            $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
 
 
-
+            $('#subscribe-title').listview('refresh');
+            $('#test').listview('refresh');
 
 
 
