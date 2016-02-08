@@ -25,6 +25,20 @@
     });
 });
 
+//------------- Displays list of search ---------------------
+
+var ajax = {
+    parseJSONP:function(result){
+        tvInfo.result = result.results;
+        $.each(result.results, function(i, row) {
+            console.log(result);
+            $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
+        });
+        $('#tv-list').listview('refresh');
+    }
+}
+
+
 // --------------Headline Page ----------------------------------
 
 $(document).on('pagebeforeshow', '#headline', function(){
@@ -32,14 +46,13 @@ $(document).on('pagebeforeshow', '#headline', function(){
     $.each(tvInfo.result, function(i, row) {
 
         if(row.id == tvInfo.id) {
-            $('#tv-data').append('<div><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></div>');
+            $('#tv-data').append('<div class="bg-headline" style="background-image:url(http://image.tmdb.org/t/p/w500'+row.backdrop_path+');"><div><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"></div></div>');
             $('#tv-data').append('<h1>'+row.original_name+'</h1>');
             $('#tv-data').append('<div>Overview : '+row.overview+'</div>');
             $('#tv-data').append('<li>Release date: '+row.release_date+'</li>');
             $('#tv-data').append('<li>Popularity : '+row.popularity+'</li>');
             $('#tv-data').append('<li>First air date : '+row.first_air_date+'</li>');
             $('#tv-data').append('<li>Vote Average: '+row.vote_average+'</li>');
-            $('#tv-data').append('<div>backdrop_path: <img src="http://image.tmdb.org/t/p/w92'+row.backdrop_path+'"></a></div>');
 
 
 //------------- Shows the title of subscribed tv-show, and removes it after --------------
@@ -75,18 +88,6 @@ $(document).on('click', '#btnSubcribe', function() {
     }, 1500);
 });
 
-//------------- Displays list of search ---------------------
-
-var ajax = {
-    parseJSONP:function(result){
-        tvInfo.result = result.results;
-        $.each(result.results, function(i, row) {
-            console.log(result);
-            $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
-        });
-        $('#tv-list').listview('refresh');
-    }
-}
 
 //-------------- Empty the tv-list on input field click ------------------------
 
@@ -94,8 +95,64 @@ $('#submit-search').on('click', function() {
     $('#tv-list').children().remove();
 });
 
+// -------------------------Sandbox ------------------------------------------------------
+/*
+$('#btnSubcribe').on('click', function() {
 
 
+    (function () {
+    $(init);
+    function init() {
+
+        $.ajax({
+            url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+            dataType: "jsonp",
+            success: renderTv
+        });
+    }
+
+        function renderTv(tvs) {
+
+            for (var m in tvs) {
+                var tv = tvs[m];
+                var title = tvs.name;
+                var poster = tvs.poster_path;
+                var seasons = tvs.number_of_seasons;
+            }
+
+            console.log(tvs);
+            
+            $('#subscribe-title').append('<li></li>');
+            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
+            
+function ba(){
+    $('#single-subscribe-title').empty();
+    $.each(tvInfo.renderTv, function(i, tv) {
+
+        if(tv.id == tvInfo.id) {
+            $('#single-subscribe-title').append('<li>First air date : '+tv.title+'</li>');
+            $('#single-subscribe-title').append('<li>Vote Average: '+tv.seasons+'</li>');
+        }
+    })
+}
+            
+
+
+            $('#subscribe-title').listview('refresh');
+
+
+
+
+    
+
+        }
+    })
+();
+});
+*/
+         
+            
+            
 // -------------------------Subscribe page ------------------------------------------------------
 
 $('#btnSubcribe').on('click', function() {
@@ -121,27 +178,22 @@ $('#btnSubcribe').on('click', function() {
                 var seasons = tvs.number_of_seasons;
             }
 
-            // --------------Sand box
-
-            // $('#test').append('<li><h3>' + title + '</h3></li>').trigger( 'create' );
-            // $('#test').append('<li><h3>' + title + '</h3></li>');
-            // --------------End Sand box
-
-
-            $('#subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
-            $('#subscribe-title').append('<li><a href="#single-subscribe-title" data-transition="slideup" <h3>' + title + '</h3></a></li>');
-
-            $('#single-subscribe-title').append('<li><h3>Number of seasons:' + title + '</h3></li>');
+            console.log(tvs);
+            
+            $('#subscribe-title').append('<li></li>');
+            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
+            
+            $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
             $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
             $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
 
 
             $('#subscribe-title').listview('refresh');
-            $('#test').listview('refresh');
+            $('#single-subscribe-title').listview('refresh');
 
 
 
-             console.log(tvs);
+    
 
         }
     })
