@@ -31,7 +31,6 @@ var ajax = {
     parseJSONP:function(result){
         tvInfo.result = result.results;
         $.each(result.results, function(i, row) {
-            console.log(result);
             $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
         $('#tv-list').listview('refresh');
@@ -121,10 +120,10 @@ $('#btnSubcribe').on('click', function() {
             }
 
             console.log(tvs);
-            
+
             $('#subscribe-title').append('<li></li>');
             $('#subscribe-title').append('<li><a href="#single-subscriptions" data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
-            
+
 function ba(){
     $('#single-subscribe-title').empty();
     $.each(tvInfo.renderTv, function(i, tv) {
@@ -135,7 +134,7 @@ function ba(){
         }
     })
 }
-            
+
 
 
             $('#subscribe-title').listview('refresh');
@@ -143,16 +142,16 @@ function ba(){
 
 
 
-    
+
 
         }
     })
 ();
 });
 */
-         
-            
-            
+
+
+
 // -------------------------Subscribe page ------------------------------------------------------
 
 $('#btnSubcribe').on('click', function() {
@@ -178,32 +177,28 @@ $('#btnSubcribe').on('click', function() {
                 var seasons = tvs.number_of_seasons;
             }
 
-            console.log(tvs);
-            
-            $('#subscribe-title').append('<li></li>');
-            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
-            
+
+            $('#subscriptions').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
+
             $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
-            $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
-            $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
+                    $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
+                    $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
+
+  $(document).on('click', '#subscriptions li a', function(){
+                    $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
+                    console.log(tvInfo)
+
+            });
 
 
-            $('#subscribe-title').listview('refresh');
-            $('#single-subscribe-title').listview('refresh');
-
-
-
-    
 
         }
+
+
+
     })
 ();
 });
-
-
-
-
-
 
 
 
