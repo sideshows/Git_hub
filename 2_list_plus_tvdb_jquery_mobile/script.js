@@ -1,3 +1,29 @@
+
+
+//---------------- Airs Today ------------------------
+
+$(document).ready(function(){
+
+$.ajax({
+                url: "https://api.themoviedb.org/3/tv/39?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+                dataType: "jsonp",
+                success: function(shows) {
+
+                        for (var s in shows) {
+                        var show = shows[s];
+                        var airsToday = shows.name;
+
+        }
+       $('#tv-list').append('<li><h3>' + airsToday + '</h3></li>');
+    }
+
+});
+});
+
+
+
+
+
 //-------------- Movie search ------------------------
 
 $('#search').submit(function(e) {
@@ -29,6 +55,7 @@ $('#search').submit(function(e) {
 var ajax = {
     parseJSONP:function(result){
         tvInfo.result = result.results;
+        console.log(result)
         $.each(result.results, function(i, row) {
             $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
@@ -89,13 +116,14 @@ $(document).on('click', '#btnSubcribe', function() {
 });
 
 
-//-------------- Empty the tv-list on input field click ------------------------
+//-------------- Empty the tv-list on input field click ---------------------------
 
 $('#submit-search').on('click', function() {
     $('#tv-list').children().remove();
 });
 
 
+<<<<<<< HEAD
 // -------------------------Subscribe page ------------------------------------------------------
 
 $('#btnSubcribe').on('click', function() {
@@ -108,11 +136,26 @@ $('#btnSubcribe').on('click', function() {
             url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
             dataType: "jsonp",
             success: renderTv 
+=======
+// -------------------------Subscribe page -----------------------------------------
+
+$('#btnSubcribe').on('click', function() {
+    (function () {
+    $(init);
+    function init() {
+        $.ajax({
+            url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+            dataType: "jsonp",
+            success: renderTv
+
+
+>>>>>>> origin/master
         });
     }
 
-        function renderTv(tvs) {
+//------------------------ Writes subscribe list-------------------------------------
 
+        function renderTv(tvs) {
             for (var m in tvs) {
                 var tv = tvs[m];
                 var title = tvs.name;
@@ -120,7 +163,9 @@ $('#btnSubcribe').on('click', function() {
                 var seasons = tvs.number_of_seasons;
                 var episodes = tvs.episodes;
             }
+            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
 
+<<<<<<< HEAD
             $('#subscriptions').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup"><h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
 
             $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
@@ -129,6 +174,15 @@ $('#btnSubcribe').on('click', function() {
 
             $(document).on('click', '#subscriptions li a', function(){
                 $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
+=======
+                    $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
+                    $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
+                    $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
+
+                    $(document).on('click', '#subscriptions li a', function(){
+                    $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
+                    console.log(tvInfo)
+>>>>>>> origin/master
             });
             
             
@@ -145,6 +199,7 @@ $('#btnSubcribe').on('click', function() {
                             var epi = data.episodes;           
             }
 
+<<<<<<< HEAD
                     
 //---------------------Array Episodes-------------------------
                     
@@ -197,62 +252,88 @@ var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/
             }
         })
     ();
+=======
+//------------------------- Writes air date -------------------------------------------
+            $.ajax({
+                url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"/season/"+ seasons +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+                dataType: "jsonp",
+                success: function(data) {
+
+                        for (var m in data) {
+                        var tv = data[m];
+                        var air = data.air_date;
+
+            }
+                console.log(air);
+                $('#test').append('<li><h3>' + air + '</h3></li>');
+            }
+
+            });
+
+
+        }
+    })
+();
+>>>>>>> origin/master
 });
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 ////////////LIST SAVED MOVIES LOCAL STORAGE
 
-function appendTaskToList(val) {
-     // $('#subscribe-title').append("<li> Movie ID: " + tvInfo.id + " </li>");
-}
+// function appendTaskToList(val) {
+//      // $('#subscribe-title').append("<li> Movie ID: " + tvInfo.id + " </li>");
+// }
 
-if (localStorage['tasks']) {
-    var tasks = JSON.parse(localStorage['tasks']);
-}else {
-    var tasks = [];
-}
+// if (localStorage['tasks']) {
+//     var tasks = JSON.parse(localStorage['tasks']);
+// }else {
+//     var tasks = [];
+// }
 
-for(var i=0;i<tasks.length;i++) {
-    appendTaskToList(tasks[i]);
-}
+// for(var i=0;i<tasks.length;i++) {
+//     appendTaskToList(tasks[i]);
+// }
 
-var addTask = function(){
-    // get value from #name input
-    var val = $('#name').val();
+// var addTask = function(){
+//     // get value from #name input
+//     var val = $('#name').val();
 
-    // add the task to the array
-    tasks.push(val);
+//     // add the task to the array
+//     tasks.push(val);
 
-    // save to local storage
-    localStorage["tasks"] = JSON.stringify(tasks);
+//     // save to local storage
+//     localStorage["tasks"] = JSON.stringify(tasks);
 
-    // append the name to the list
-    appendTaskToList(val);
+//     // append the name to the list
+//     appendTaskToList(val);
 
-    // reset the input field and focus it.
-    $('#name').val("").focus();
+//     // reset the input field and focus it.
+//     $('#name').val("").focus();
 
-}
-//if click favorite, add to ID to list
-$('#popupDialog').click(addTask);
-$('#name').keyup(function(e){
-    if (e.keyCode === 13) {
-        addTask();
-    }
-});
-
-
-// approach 1
-/*$('.done-btn').click(function(){
-    $(this).parent('li').addClass('done');
-});*/
+// }
+// //if click favorite, add to ID to list
+// $('#popupDialog').click(addTask);
+// $('#name').keyup(function(e){
+//     if (e.keyCode === 13) {
+//         addTask();
+//     }
+// });
 
 
+// // approach 1
+// /*$('.done-btn').click(function(){
+//     $(this).parent('li').addClass('done');
+// });*/
 
-   window.localStorage.clear();
+
+
+//    window.localStorage.clear();
 
 ////////////LIST SAVED MOVIES LOCAL STORAGE -----END-----
 
