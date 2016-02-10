@@ -1,6 +1,6 @@
 //-------------- Movie search ------------------------
 
-    $('#search').submit(function(e) {
+$('#search').submit(function(e) {
         e.preventDefault();
 
         var $results = $('#results-tv'),
@@ -20,7 +20,6 @@
         },
         error: function (request,error) {
             alert('Network error has occurred please try again!');
-
         }
     });
 });
@@ -72,12 +71,14 @@ var tvInfo = {
     result : null
 }
 
+
 //-------------- Transfer the data to headline page ------------------
 
 $(document).on('click', '#tv-list li a', function(){
     tvInfo.id = $(this).attr('data-id');
     $.mobile.changePage( "#headline", { transition: "slide", changeHash: true });
 });
+
 
 //--------------- Closes the dialog popup ----------------------
 
@@ -94,69 +95,11 @@ $('#submit-search').on('click', function() {
     $('#tv-list').children().remove();
 });
 
-// -------------------------Sandbox ------------------------------------------------------
-/*
-$('#btnSubcribe').on('click', function() {
-
-
-    (function () {
-    $(init);
-    function init() {
-
-        $.ajax({
-            url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
-            dataType: "jsonp",
-            success: renderTv
-        });
-    }
-
-        function renderTv(tvs) {
-
-            for (var m in tvs) {
-                var tv = tvs[m];
-                var title = tvs.name;
-                var poster = tvs.poster_path;
-                var seasons = tvs.number_of_seasons;
-            }
-
-            console.log(tvs);
-
-            $('#subscribe-title').append('<li></li>');
-            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
-
-function ba(){
-    $('#single-subscribe-title').empty();
-    $.each(tvInfo.renderTv, function(i, tv) {
-
-        if(tv.id == tvInfo.id) {
-            $('#single-subscribe-title').append('<li>First air date : '+tv.title+'</li>');
-            $('#single-subscribe-title').append('<li>Vote Average: '+tv.seasons+'</li>');
-        }
-    })
-}
-
-
-
-            $('#subscribe-title').listview('refresh');
-
-
-
-
-
-
-        }
-    })
-();
-});
-*/
-
-
 
 // -------------------------Subscribe page ------------------------------------------------------
 
 $('#btnSubcribe').on('click', function() {
-
-
+    
     (function () {
     $(init);
     function init() {
@@ -164,7 +107,7 @@ $('#btnSubcribe').on('click', function() {
         $.ajax({
             url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
             dataType: "jsonp",
-            success: renderTv
+            success: renderTv 
         });
     }
 
@@ -175,30 +118,87 @@ $('#btnSubcribe').on('click', function() {
                 var title = tvs.name;
                 var poster = tvs.poster_path;
                 var seasons = tvs.number_of_seasons;
+                var episodes = tvs.episodes;
             }
 
-
-            $('#subscriptions').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup" <h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
+            $('#subscriptions').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup"><h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
 
             $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
                     $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
                     $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
 
-  $(document).on('click', '#subscriptions li a', function(){
-                    $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
-                    console.log(tvInfo)
-
+            $(document).on('click', '#subscriptions li a', function(){
+                $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
             });
+            
+            
+//---------------------Get tv/season/latest-------------------
+            
+            $.ajax({
+                url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"/season/"+ seasons +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+                dataType: "jsonp",
+                //----Success pharse data to variable
+                success: function(data) {                
+                            for (var m in data) {
+                            var tv = data[m];
+                            var air = data.air_date;
+                            var epi = data.episodes;           
+            }
 
+                    
+//---------------------Array Episodes-------------------------
+                    
+$.each(epi, function (key, data) {
+    
+  //  console.log(data.air_date, data.episode_number, data.name)
 
+var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds    
+//Create date from input value  Hämtat från: http://jsfiddle.net/mzdqc/
+var inputDate = new Date(data.air_date);
 
-        }
+//Get today's date
+var todaysDate = new Date();
+     
+//call setHours to take the time out of the comparison
+if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0));
+{
+//Date equals today's date
+}   
+    
+    
+ 
+//---------------------Show Next Episodes-----------------    
+    
+if (todaysDate < inputDate){   
+    
+   // Days counter from: http://www.vijayjoshi.org/2008/10/24/faq-calculate-number-of-days-between-two-dates-in-javascript/
+    
 
-
-
-    })
-();
+var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
+    console.log(diffNext)   
+   
+    
+        
+    $('#single-subscribe-title').append('<li><h3>Next episode in <b>'+ diffNext +'</b> days... Episode '+ data.episode_number +': <i>'+data.name+'</i> '+ data.air_date +'</h3></li>');
+}
+    
+    
+//---------------------Show Previous Episodes---------------------        
+    //style="background: url(https://image.tmdb.org/t/p/w300/'+data.still_path +');"
+    else {    
+        var diffPrev = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
+    console.log(diffPrev)    
+        $('#single-subscribe-title').append('<li ><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' '+ data.air_date + '</h3></li>');
+    }
+     
+                        })
+                    }               
+                });            
+            }
+        })
+    ();
 });
+
 
 
 
