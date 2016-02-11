@@ -121,8 +121,9 @@ $('#btnSubcribe').on('click', function() {
                 var episodes = tvs.episodes;
             }
 
-            $('#subscriptions').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '"data-transition="slideup"><h3><img src="http://image.tmdb.org/t/p/w92'+poster+'">' + title + '</h3></a></li>');
-
+            $('#subscribe-title').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '" data-transition="slideup"><img src="http://image.tmdb.org/t/p/w92'+poster+'"><h3>' + title + '</h3></a></li>');
+                $('#subscribe-title').listview('refresh');
+            
             $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
                     $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
                     $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
