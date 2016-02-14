@@ -33,6 +33,7 @@ var ajax = {
             $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
         $('#tv-list').listview('refresh');
+
     }
 }
 
@@ -66,6 +67,8 @@ $(document).on('pagebeforeshow', '#headline', function(){
     });
 });
 
+
+
 var tvInfo = {
     id : null,
     result : null
@@ -98,8 +101,9 @@ $('#submit-search').on('click', function() {
 
 // -------------------------Subscribe page ------------------------------------------------------
 
+
 $('#btnSubcribe').on('click', function() {
-    
+
     (function () {
     $(init);
     function init() {
@@ -107,7 +111,7 @@ $('#btnSubcribe').on('click', function() {
         $.ajax({
             url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
             dataType: "jsonp",
-            success: renderTv 
+            success: renderTv
         });
     }
 
@@ -122,79 +126,81 @@ $('#btnSubcribe').on('click', function() {
             }
 
             $('#subscribe-title').append('<li><a href="#single-subscriptions" data-id="' + tvs.id + '" data-transition="slideup"><img src="http://image.tmdb.org/t/p/w92'+poster+'"><h3>' + title + '</h3></a></li>');
-            
-            
-            $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
+
+
+                    $('#single-subscribe-title').append('<li><h3>' + title + '</h3></li>');
                     $('#single-subscribe-title').append('<li><h3>Number of seasons:' + seasons + '</h3></li>');
                     $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"</li>');
 
-            $(document).on('click', '#subscriptions li a', function(){
-                $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
-            });
-            
-            
+
+
+            // $(document).on('click', '#subscriptions li a', function(){
+            //     $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
+            // });
+
+
 //---------------------Get tv/season/latest-------------------
-            
+
             $.ajax({
                 url: "https://api.themoviedb.org/3/tv/"+ tvInfo.id +"/season/"+ seasons +"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
                 dataType: "jsonp",
                 //----Success pharse data to variable
-                success: function(data) {                
+                success: function(data) {
                             for (var m in data) {
                             var tv = data[m];
                             var air = data.air_date;
-                            var epi = data.episodes;           
+                            var epi = data.episodes;
             }
 
-                    
+
 //---------------------Array Episodes-------------------------
-                    
+
 $.each(epi, function (key, data) {
-    
+
   //  console.log(data.air_date, data.episode_number, data.name)
 
-var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds    
+var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 //Create date from input value  Hämtat från: http://jsfiddle.net/mzdqc/
 var inputDate = new Date(data.air_date);
 
+
 //Get today's date
 var todaysDate = new Date();
-     
+
 //call setHours to take the time out of the comparison
 if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0));
 {
 //Date equals today's date
-}   
-    
-    
- 
-//---------------------Show Next Episodes-----------------    
-    
-if (todaysDate < inputDate){   
-    
+}
+
+
+
+//---------------------Show Next Episodes-----------------
+
+if (todaysDate < inputDate){
+
    // Days counter from: http://www.vijayjoshi.org/2008/10/24/faq-calculate-number-of-days-between-two-dates-in-javascript/
-    
+
 
 var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
-    console.log(diffNext)   
-   
-    
-        
+    console.log(diffNext)
+
+
+
     $('#single-subscribe-title').append('<li><h3>Next episode in <b>'+ diffNext +'</b> days... Episode '+ data.episode_number +': <i>'+data.name+'</i> '+ data.air_date +'</h3></li>');
 }
-    
-    
-//---------------------Show Previous Episodes---------------------        
+
+
+//---------------------Show Previous Episodes---------------------
     //style="background: url(https://image.tmdb.org/t/p/w300/'+data.still_path +');"
-    else {    
+    else {
         var diffPrev = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
-    console.log(diffPrev)    
-        $('#single-subscribe-title').append('<li ><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' '+ data.air_date + '</h3></li>');
+        $('#subscribe-title').append('<li ><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' '+ data.air_date + '</h3></li>');
     }
-     
+
                         })
-                    }               
-                });            
+                    }
+                });
             }
         })
     ();
@@ -203,61 +209,60 @@ var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/
 
 
 
+// ////////////LIST SAVED MOVIES LOCAL STORAGE
 
-////////////LIST SAVED MOVIES LOCAL STORAGE
+// function appendTaskToList(val) {
+//      // $('#subscribe-title').append("<li> Movie ID: " + tvInfo.id + " </li>");
+// }
 
-function appendTaskToList(val) {
-     // $('#subscribe-title').append("<li> Movie ID: " + tvInfo.id + " </li>");
-}
+// if (localStorage['tasks']) {
+//     var tasks = JSON.parse(localStorage['tasks']);
+// }else {
+//     var tasks = [];
+// }
 
-if (localStorage['tasks']) {
-    var tasks = JSON.parse(localStorage['tasks']);
-}else {
-    var tasks = [];
-}
+// for(var i=0;i<tasks.length;i++) {
+//     appendTaskToList(tasks[i]);
+// }
 
-for(var i=0;i<tasks.length;i++) {
-    appendTaskToList(tasks[i]);
-}
+// var addTask = function(){
+//     // get value from #name input
+//     var val = $('#name').val();
 
-var addTask = function(){
-    // get value from #name input
-    var val = $('#name').val();
+//     // add the task to the array
+//     tasks.push(val);
 
-    // add the task to the array
-    tasks.push(val);
+//     // save to local storage
+//     localStorage["tasks"] = JSON.stringify(tasks);
 
-    // save to local storage
-    localStorage["tasks"] = JSON.stringify(tasks);
+//     // append the name to the list
+//     appendTaskToList(val);
 
-    // append the name to the list
-    appendTaskToList(val);
+//     // reset the input field and focus it.
+//     $('#name').val("").focus();
 
-    // reset the input field and focus it.
-    $('#name').val("").focus();
-
-}
-//if click favorite, add to ID to list
-$('#popupDialog').click(addTask);
-$('#name').keyup(function(e){
-    if (e.keyCode === 13) {
-        addTask();
-    }
-});
-
-
-// approach 1
-/*$('.done-btn').click(function(){
-    $(this).parent('li').addClass('done');
-});*/
+// }
+// //if click favorite, add to ID to list
+// $('#popupDialog').click(addTask);
+// $('#name').keyup(function(e){
+//     if (e.keyCode === 13) {
+//         addTask();
+//     }
+// });
 
 
+// // approach 1
+// /*$('.done-btn').click(function(){
+//     $(this).parent('li').addClass('done');
+// });*/
 
-   window.localStorage.clear();
 
-////////////LIST SAVED MOVIES LOCAL STORAGE -----END-----
 
-// -------------------Sandbox--------------------------------
+//    window.localStorage.clear();
+
+// ////////////LIST SAVED MOVIES LOCAL STORAGE -----END-----
+
+// // -------------------Sandbox--------------------------------
 
 
 
