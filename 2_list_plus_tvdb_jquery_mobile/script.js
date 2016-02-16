@@ -98,6 +98,12 @@ $('#submit-search').on('click', function() {
     $('#tv-list').children().remove();
 });
 
+//-------------- Display Tv-list onclick ------------------------
+
+$('#submit-search').on('click', function() {
+    $('#tv-list').append( "<h3> Tv-List</3>");
+});
+
 
 // -------------------------Subscribe page ------------------------------------------------------
 
@@ -134,6 +140,7 @@ $('#btnSubcribe').on('click', function() {
 
 
 
+
             // $(document).on('click', '#subscriptions li a', function(){
             //     $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
             // });
@@ -150,6 +157,7 @@ $('#btnSubcribe').on('click', function() {
                             var tv = data[m];
                             var air = data.air_date;
                             var epi = data.episodes;
+                            var epiNumber = data.episode_number;
             }
 
 
@@ -157,7 +165,7 @@ $('#btnSubcribe').on('click', function() {
 
 $.each(epi, function (key, data) {
 
-  //  console.log(data.air_date, data.episode_number, data.name)
+
 
 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 //Create date from input value  Hämtat från: http://jsfiddle.net/mzdqc/
@@ -173,7 +181,7 @@ if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0));
 //Date equals today's date
 }
 
-
+//
 
 //---------------------Show Next Episodes-----------------
 
@@ -183,11 +191,10 @@ if (todaysDate < inputDate){
 
 
 var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
-    console.log(diffNext)
 
 
+    $('#single-subscribe-title').append('<li><h3>Next episode in <b>'+ diffNext +'</b> days... Episode '+ data.episode_number +': <i>'+data.name+'</i> </h3> <input id="subcribe" type="checkbox" name="checkbox-0"/></label></li>');
 
-    $('#single-subscribe-title').append('<li><h3>Next episode in <b>'+ diffNext +'</b> days... Episode '+ data.episode_number +': <i>'+data.name+'</i> '+ data.air_date +'</h3></li>');
 }
 
 
@@ -195,7 +202,7 @@ var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/
     //style="background: url(https://image.tmdb.org/t/p/w300/'+data.still_path +');"
     else {
         var diffPrev = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
-        $('#subscribe-title').append('<li ><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' '+ data.air_date + '</h3></li>');
+        $('#subscribe-title').append('<li ><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' </h3><input id="subcribe" type="checkbox" name="checkbox-0"/></label></li>');
     }
 
                         })
