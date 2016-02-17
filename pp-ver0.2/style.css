@@ -10,5 +10,10 @@ li {
 #subcribe {
     position: relative;
     float: right;
+}
 
+#following h1 {
+    display: inline;
+    margin-right: 5px;
+    padding: 5px;
 }

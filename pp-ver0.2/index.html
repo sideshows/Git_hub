@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
 <link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
-<link rel="stylesheet" type="text/css" href="themes/Test.css">
+<link rel="stylesheet" type="text/css" href="themes/sportbil.css">
 <!-- <script src="script/jquery.mobile-1.4.5.min.js"></script> -->
 
 </head>
@@ -29,8 +29,8 @@
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <form action="" id="search">
-                    <label for="movie-search">Search:</label>
-                    <input type="text" name="tv-search" id="tv-search" required>
+                    <label for="search-1">Search tv-show:</label>
+                    <input type="search" name="search-5" id="tv-search" value="" placeholder="Enter tv-show name" required>
                     <div>
                         <input type="submit" value="Search tv" id="submit-search">
                     </div>
@@ -55,13 +55,13 @@
 
     <div data-role="page" id="headline">
         <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" data-transition="slide" data-direction="reverse">Back</a>
+            <a href="#home" class="ui-btn ui-icon-arrow-l ui-corner-all ui-btn-icon-left" data-transition="slide" data-direction="reverse">Back</a>
              <h1>Pirate Parrot</h1>
 
 
             <!-- popup som bekräftar premunation -->
 
-            <a href="#popupDialog" data-rel="popup" data-position-to="window" id="btnSubcribe" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-left">Subcribe</a>
+            <a href="#popupDialog" data-rel="popup" data-position-to="window" id="btnSubcribe" data-transition="pop" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-left">Subcribe</a>
             <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
 
             <div data-role="header" data-theme="a">
@@ -98,8 +98,9 @@
 
         </div>
 
-
-                        <h1>Following</h1>
+        <div id="following">
+            <h1>Following</h1>
+        </div>
             <div data-role="main" class="example-wrapper">
                 <ul data-role="listview" id="subscribe-title" data-theme="a"></ul>
             </div>
@@ -121,12 +122,15 @@
         </div>
 
 
-            <h1>Single subcribe</h1>
+            <div><h1>Single subcribe</h1></div>
             <div class="example-wrapper">
                 <ul data-role="listview" id="single-subscribe-title" data-theme="a">
-
                 </ul>
             </div>
+
+
+
+
 
 
         </div><!-- /content -->
