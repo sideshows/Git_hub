@@ -32,6 +32,7 @@ var ajax = {
         $.each(result.results, function(i, row) {
             $('#tv-list').append('<li><a href="#headline" data-id="' + row.id + '"><img src="http://image.tmdb.org/t/p/w92'+row.poster_path+'"/><h3>' + row.name + '</h3><p>' + row.vote_average + '/10</p></a></li>');
         });
+
         $('#tv-list').listview('refresh');
 
     }
@@ -97,7 +98,7 @@ $(document).on('click', '#tv-list li a', function(){
 $(document).on('click', '#btnSubcribe', function() {
     setTimeout(function () {
     $('#popupDialog').popup('close');
-    }, 1500);
+    }, 3000);
 });
 
 
@@ -110,7 +111,7 @@ $('#submit-search').on('click', function() {
 //-------------- Display Tv-list onclick ------------------------
 
 $('#submit-search').on('click', function() {
-    $('#tv-list').append( "<h3> Tv-List</3>");
+    $('#tv-list').append("<h3> Tv-List</3>");
 });
 
 
@@ -125,14 +126,13 @@ for (var key in localStorage){
 
  $('#subscribe-title').append('<li><a href="#single-subscriptions" data-id="'+ key +'" data-transition=""><h3>'+ tvTitle +'</h3></a></li>');
 
+
 }
 
 //----------------- Store value from data-id onclick ---------------------------------
 
 $( "#subscribe-title li a" ).click(function() {
   var tvId = $(this).attr('data-id');
-
-
 
 
             $.ajax({
@@ -160,12 +160,12 @@ $( "#subscribe-title li a" ).click(function() {
                         $.mobile.changePage( "#single-subscribe-title", { transition: "slide", changeHash: true });
 
                         $('#single-subscribe-title').empty();
-
-                        $('#single-subscribe-title').append('<li><img src="http://image.tmdb.org/t/p/w92'+poster+'"><h3><h3>' + title + '</h3><p>('+ status +')</p></li>');
+                        $('#single-subscribe-title').append('<div class="bg-headline" style="background-image:url(http://image.tmdb.org/t/p/w500'+tvs.backdrop_path+');"><div><img src="http://image.tmdb.org/t/p/w92'+tvs.poster_path+'"></div></div>');
+                        $('#single-subscribe-title').append('<h3>' + title + ' <span>( '+ status +' )</span></h3>');
                         $('#single-subscribe-title').append('<li><h3>Number of seasons: ' + seasons + '</h3></li>');
+                        $('#single-subscribe-title').append('<li><h3>Number of Episodes: ' + tvs.number_of_episodes + '</h3></li>');
                         $('#single-subscribe-title').append('<li><h3><a href="'+tvs.homepage+'">Visit Tv-shows Website</a></h3></li>');
                         $('#single-subscribe-title').append('<li><button id="remove" class="ui-btn ui-btn-inline ui-corner-all ui-icon-delete ui-btn-icon-right" data-id="'+ key +'">Unsubscribe '+title+' </button></li>');
-
 
 
                         }
@@ -173,25 +173,19 @@ $( "#subscribe-title li a" ).click(function() {
 
 //----------------------- Remove clicked item -----------------------------------------
 
-
-          $.ajax({
-                                    url: "https://api.themoviedb.org/3/tv/"+ tvId +"/season/"+seasons+"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
-                                   dataType: "jsonp",
-                                   success: function(data) {
-                                        for (var m in data) {
-                                        var tv = data[m];
-                                        var air = data.air_date;
-                                        var epiNumber = data.episode_number;
-                                        var epi = data.episodes;
-
-
+ $.ajax({
+        url: "https://api.themoviedb.org/3/tv/"+ tvId +"/season/"+seasons+"?api_key=5fbddf6b517048e25bc3ac1bbeafb919",
+        dataType: "jsonp",
+        success: function(data) {
+                for (var m in data) {
+                var tv = data[m];
+                var air = data.air_date;
+                var epiNumber = data.episode_number;
+                var epi = data.episodes;
 
                                    }
 
-
                         $.mobile.changePage( "#single-subscriptions", { transition: "slide", changeHash: true });
-
-
 
                         $.each(epi, function (key, data) {
 
@@ -209,8 +203,6 @@ if(inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0));
 {
 //Date equals today's date
 }
-
-
 //---------------------Show Next Episodes-----------------
 if (todaysDate < inputDate){
 
@@ -223,15 +215,12 @@ var diffNext = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/
 }
 
 //---------------------Show Previous Episodes---------------------
-    //style="background: url(https://image.tmdb.org/t/p/w300/'+data.still_path +');"
     else {
         var diffPrev = Math.round(Math.abs((todaysDate.getTime() - inputDate.getTime())/(oneDay)));
-        $('#single-subscribe-title').append('<li><h3>Previous episode aired '+ diffPrev +' days ago... episode '+ data.episode_number +' </h3></li>');
+        $('#single-subscribe-title').append('<li><h3>Previous episode '+ diffPrev +' days ago episode '+ data.episode_number +' </h3></li>');
     }
     $('#single-subscribe-title').listview('refresh');
-
  });
-
         }
     });
 
@@ -256,8 +245,26 @@ $("#remove").live('click',function(){
 //--------- test sandboxing write number of subcriptions ------------
 
 
+
         var length = localStorage.length;
-        $('<h1> '+ length +'</h1>').insertAfter('#following h1');
+        $('<h2> '+ length +'</h2>').insertAfter('#following h2');
+
+
+
+
+//-------- Hide the keyboard on the click search http://stackoverflow.com/questions/5932317/how-to-capture-the-keyboard-return-event-on-iphone-browser ------------------
+
+document.onkeyup=function(e) {
+    if(e.which == 13){
+        $('#tv-search').blur();
+        //rest of function
+
+        return false;
+    }
+}
+
+
+
 
 
 

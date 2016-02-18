@@ -93,18 +93,19 @@
 
     <div data-role="page" id="subscriptions">
         <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn-right" data-transition="slide">Back</a>
+            <a href="#home" class="ui-btn-right ui-btn ui-icon-home ui-corner-all ui-btn-icon-right" data-transition="slide">Home</a>
+
+<!-- Reload page on click for Refresh Tv list -->
+            <a href="#" onclick="location.reload()" class="ui-btn-left ui-btn ui-icon-refresh ui-corner-all ui-btn-icon-right">Refresh Tv list</a>
+
              <h1>Pirate Parrot</h1>
-
         </div>
-
         <div id="following">
-            <h1>Following</h1>
+            <h2>Following</h2>
         </div>
             <div data-role="main" class="example-wrapper">
                 <ul data-role="listview" id="subscribe-title" data-theme="a"></ul>
             </div>
-
 
         </div><!-- /content -->
 
@@ -125,6 +126,7 @@
             <div><h1>Single subcribe</h1></div>
             <div class="example-wrapper">
                 <ul data-role="listview" id="single-subscribe-title" data-theme="a">
+
                 </ul>
             </div>
 

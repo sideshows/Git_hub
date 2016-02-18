@@ -12,8 +12,13 @@ li {
     float: right;
 }
 
-#following h1 {
+#following {
+    padding: 10px 0px;
+}
+
+#following h2 {
     display: inline;
     margin-right: 5px;
     padding: 5px;
+    margin-top: 10px;
 }
