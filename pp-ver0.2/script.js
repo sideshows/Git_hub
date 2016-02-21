@@ -57,7 +57,7 @@ $(document).on('pagebeforeshow', '#headline', function(){
             $('#tv-data').append('<li>Vote Average: '+row.vote_average+'</li>');
 
 
-//---------------- Store id and title in local storage ------------
+//---------------- Store id and title in localstorage ------------
 
             $('#btnSubcribe').click(function() {
                 localStorage.setItem(row.id, row.original_name);
@@ -242,9 +242,8 @@ $("#remove").live('click',function(){
 
 });
 
+
 //--------- test sandboxing write number of subcriptions ------------
-
-
 
         var length = localStorage.length;
         $('<h2> '+ length +'</h2>').insertAfter('#following h2');
@@ -262,7 +261,6 @@ document.onkeyup=function(e) {
         return false;
     }
 }
-
 
 
 
